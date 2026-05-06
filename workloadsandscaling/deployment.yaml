@@ -1,1 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploymentsvc
+spec:
+  replicas: 3
 
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1 #Kubernetes can create 1 extra pod above desired replicas during update
+      maxUnavailable: 1 #Kubernetes can make 1 pod unavailable (down) during update to meet the desire count
+
+  selector:
+    matchLabels:
+      app: webserver
+
+  template:
+    metadata:
+      labels:
+        app: webserver
+
+    spec:
+      containers:
+        - name: nginxcon
+          image: nginx
+
+        - name: ubuntucon
+          image: ubuntu
+          command: ["sleep", "30"]
