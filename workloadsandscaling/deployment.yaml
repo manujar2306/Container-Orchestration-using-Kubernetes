@@ -28,3 +28,15 @@ spec:
         - name: ubuntucon
           image: ubuntu
           command: ["sleep", "30"]
+----
+kind: Service
+metadata:
+  name: webserver-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: webserver   # 👈 THIS connects to pods
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80 #pod ports
