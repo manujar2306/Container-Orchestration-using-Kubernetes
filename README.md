@@ -127,3 +127,5 @@ kubectl rollout undo deployment/nginx-deploy
 * `kubectl set image` is used to update applications
 * `kubectl rollout` commands help monitor and manage updates
 
+----
+
